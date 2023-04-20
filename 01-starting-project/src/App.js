@@ -1,9 +1,10 @@
-import Header from "./components/header/Header";
-
+import Header from "./components/Header/header";
+import MainBanner from "./components/MainBanner/MainBanner";
 function App() {
   return (
     <>
       <Header></Header>
+      <MainBanner></MainBanner>
     </>
   );
 }
