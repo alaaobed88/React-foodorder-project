@@ -16,16 +16,6 @@
   font-weight: 700;
 }
 .add-amount button {
-  background-color: #b8471a;
-  color: white;
   margin-top: 0.25rem;
-  cursor:pointer;
-  padding-block:0.2rem ;
-  padding-inline: 1.2rem;
-  border: 1px #ab4319 solid;
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
+  background: #b8471a;
 }
