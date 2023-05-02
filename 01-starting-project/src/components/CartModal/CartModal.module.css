@@ -1,0 +1,48 @@
+.cart-modal-flex {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  margin-top: 10rem;
+  width: 100%;
+
+  z-index: 1000;
+  height: 100vh;
+}
+.cart-modal-item {
+  width: 30%;
+  min-width: 18rem;
+  height: 25vh;
+  background-color: white;
+  border: 5px solid white;
+  border-radius: 10px;
+  padding: 0.5rem;
+  max-height: 70vh;
+}
+
+.cart-btn {
+  color: #b8471a;
+  background-color: white;
+  font-weight: bold;
+  float: right;
+  margin-right: 0.25rem;
+  margin-top: -0.6rem;
+}
+.name{
+  font-size: 1.5rem;
+  margin-top: 0.75rem;
+}
+.price{
+  color: #b8471a;
+  margin-right: 2rem;
+  display: inline;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.amount{
+  display: inline;
+  border: 0.5px solid rgb(182, 182, 182);
+  border-radius: 2px;
+  font-weight: bold;
+  padding:0.1rem 0.5rem;
+  font-size: 0.75rem;
+}

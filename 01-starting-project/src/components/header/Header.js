@@ -1,9 +1,11 @@
 import styles from "./Header.module.css";
+
 import mealsimage from "../Assets/meals.jpg";
 import { useContext } from "react";
 import { CartContext } from "../../storage/CartContext";
 const Header = () => {
-  const ctx = useContext({CartContext});
+  const ctx = useContext(CartContext);
+
   return (
     <>
       <div className={styles.header}>
