@@ -6,16 +6,19 @@ const CartContext = React.createContext({
 });
 
 const CartProvider = (props) => {
-  const [cartExpanded, setCartExpanded] = useState(false);
+  const [cartExpanded, setCartExpanded] = useState(true);
   const cartHandler = (event) => {
-    setCartExpanded(true);
+    setCartExpanded((previousState) => !previousState);
+    console.log(cartExpanded);
   };
-  
+
   return (
-    <CartContext.Provider cartExpanded={cartExpanded} cartHandler={cartHandler}>
+    <CartContext.Provider
+      value={{ cartExpanded: cartExpanded, cartHandler: cartHandler }}
+    >
       {props.children}
     </CartContext.Provider>
   );
 };
-export {CartContext};
+export { CartContext };
 export default CartProvider;
