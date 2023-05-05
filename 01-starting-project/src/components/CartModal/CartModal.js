@@ -2,7 +2,10 @@ import styles from "./CartModal.module.css";
 import BackDrop from "../UI/BackDrop";
 import CartModalItem from "./CartModalItem";
 import Button from "../UI/Button";
+import { useContext } from "react";
+import { CartContext } from "../../storage/CartContext";
 const CartModal = () => {
+  const ctx=useContext(CartContext);
   return (
     <>
       <BackDrop />
@@ -16,7 +19,7 @@ const CartModal = () => {
             <p>$666</p>
           </div>
           <div className={styles.checkout}>
-            <Button className={styles['cancel-btn']}>Cancel</Button>
+            <Button className={styles['cancel-btn']} onClick={ctx.cartHandler}>Cancel</Button>
             <Button className={styles['checkout-btn']}>CheckOut</Button>
           </div>
         </div>
