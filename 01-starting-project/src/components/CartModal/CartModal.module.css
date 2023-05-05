@@ -4,45 +4,72 @@
   justify-content: center;
   margin-top: 10rem;
   width: 100%;
-
   z-index: 1000;
-  height: 100vh;
+  height: 100%;
 }
-.cart-modal-item {
-  width: 30%;
-  min-width: 18rem;
-  height: 25vh;
+.cart-modal {
+  display: flex;
+  flex-direction: column;
+  height: 40vh;
+  padding-inline: 1rem;
+  padding-bottom: 1rem;
+  
+  max-height: 60vh;
   background-color: white;
   border: 5px solid white;
   border-radius: 10px;
-  padding: 0.5rem;
-  max-height: 70vh;
+  width: 40%;
+  min-width: 20rem;
+  overflow-y: scroll;
+  scrollbar-color: #b04216 #ffffff;
+  scrollbar-width: thin;
 }
 
-.cart-btn {
-  color: #b8471a;
+.cart-modal::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* For Chrome, Edge, and Safari */
+.cart-modal::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+.cart-modal::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
+
+/* Hide scrollbar arrows on all browsers */
+.cart-modal::-webkit-scrollbar-button {
+  display: none;
+}
+
+.amount {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-left: 10px;
+  margin-right: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkout-btn {
+  background-color: #8a2b06;
+  color: white;
+  margin-right: 1rem;
+  padding: 1rem;
+}
+
+.cancel-btn {
   background-color: white;
-  font-weight: bold;
-  float: right;
-  margin-right: 0.25rem;
-  margin-top: -0.6rem;
+  color: #8a2b06;
+  padding: 1rem;
+  margin-right:1rem ;
 }
-.name{
-  font-size: 1.5rem;
-  margin-top: 0.75rem;
-}
-.price{
-  color: #b8471a;
-  margin-right: 2rem;
-  display: inline;
-  font-size: 0.8rem;
-  font-weight: bold;
-}
-.amount{
-  display: inline;
-  border: 0.5px solid rgb(182, 182, 182);
-  border-radius: 2px;
-  font-weight: bold;
-  padding:0.1rem 0.5rem;
-  font-size: 0.75rem;
+
+.checkout{
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
 }

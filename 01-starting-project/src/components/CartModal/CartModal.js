@@ -1,17 +1,24 @@
 import styles from "./CartModal.module.css";
 import BackDrop from "../UI/BackDrop";
+import CartModalItem from "./CartModalItem";
 import Button from "../UI/Button";
 const CartModal = () => {
   return (
     <>
-      <BackDrop></BackDrop>
+      <BackDrop />
       <div className={styles["cart-modal-flex"]}>
-        <div className={styles['cart-modal-item']}>
-          <p className={styles.name}>name</p>
-          <Button className={styles['cart-btn']}>-</Button>
-          <Button className={styles['cart-btn']}>+</Button>
-          <p className={styles.price}>$price</p>
-          <p className={styles.amount}>x2</p>
+        <div className={styles["cart-modal"]}>
+          <CartModalItem></CartModalItem>
+          <CartModalItem></CartModalItem>
+          <CartModalItem></CartModalItem>
+          <div className={styles.amount}>
+            <p>Total Amount</p>
+            <p>$666</p>
+          </div>
+          <div className={styles.checkout}>
+            <Button className={styles['cancel-btn']}>Cancel</Button>
+            <Button className={styles['checkout-btn']}>CheckOut</Button>
+          </div>
         </div>
       </div>
     </>

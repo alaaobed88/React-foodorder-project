@@ -1,0 +1,33 @@
+.cart-modal-item {
+  border-bottom: 5px solid #b8471a;
+  padding: 1rem;
+  
+}
+
+.cart-btn {
+  color: #b8471a;
+  background-color: white;
+  font-weight: bold;
+  float: right;
+  margin-right: 0.25rem;
+  margin-top: -0.6rem;
+}
+.name {
+  font-size: 1.5rem;
+  margin-top: 0.75rem;
+}
+.price {
+  color: #b8471a;
+  margin-right: 2rem;
+  display: inline;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.amount {
+  display: inline;
+  border: 0.5px solid rgb(182, 182, 182);
+  border-radius: 2px;
+  font-weight: bold;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.75rem;
+}
