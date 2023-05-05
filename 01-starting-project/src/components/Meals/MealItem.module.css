@@ -18,4 +18,11 @@
 .add-amount button {
   margin-top: 0.25rem;
   background: #b8471a;
+  transition: 0.5s ease-in-out;
+}
+
+.add-amount button:hover{
+  transform: scale(1.1);
+  color: #b8471a;
+  background-color: white;
 }

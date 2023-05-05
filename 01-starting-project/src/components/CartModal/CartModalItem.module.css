@@ -11,6 +11,12 @@
   float: right;
   margin-right: 0.25rem;
   margin-top: -0.6rem;
+  transition: 0.5s ease-in-out;
+}
+.cart-btn:hover{
+  color: white;
+  background-color: #b8471a;
+  transform: scale(1.1);
 }
 .name {
   font-size: 1.5rem;
@@ -18,16 +24,16 @@
 }
 .price {
   color: #b8471a;
-  margin-right: 2rem;
+  margin-right: 3rem;
   display: inline;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: bold;
 }
 .amount {
   display: inline;
   border: 0.5px solid rgb(182, 182, 182);
-  border-radius: 2px;
+  border-radius: 10px;
   font-weight: bold;
   padding: 0.1rem 0.5rem;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
 }
