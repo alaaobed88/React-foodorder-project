@@ -9,10 +9,8 @@ const CartProvider = (props) => {
   const [cartExpanded, setCartExpanded] = useState(false);
   const cartHandler = (event) => {
     setCartExpanded((previousState) => !previousState);
-    console.log(cartExpanded);
   };
- 
-  
+
   return (
     <CartContext.Provider
       value={{ cartExpanded: cartExpanded, cartHandler: cartHandler }}
