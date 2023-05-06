@@ -1,13 +1,20 @@
 import styles from "./MealItem.module.css";
 import { useState } from "react";
 import Button from "../UI/Button";
+import { useContext } from "react";
+import { CartContext } from "../../storage/CartContext";
 const MealItem = (props) => {
   const [amount, setAmount] = useState(0);
+  const ctx = useContext(CartContext);
   const addHandler = (event) => {
-    setAmount((previousAmount) => {
-      return ++previousAmount;
+    setAmount((previousAmount) => ++previousAmount);
+    ctx.cartItemsAdder({
+      name: props.name,
+      description: props.description,
+      price: props.price,
     });
   };
+
   return (
     <li className={styles["meal-item"]}>
       <div className={styles.info}>
