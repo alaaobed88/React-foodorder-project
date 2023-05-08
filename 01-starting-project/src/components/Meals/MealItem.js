@@ -8,12 +8,13 @@ const MealItem = (props) => {
   const ctx = useContext(CartContext);
   const addHandler = () => {
     setAmount((prevAmount) => prevAmount + 1);
-    const updatedAmount=amount+1;
+    const updatedAmount = amount + 1;
+
     ctx.cartItemsAdder({
       name: props.name,
       description: props.description,
       price: props.price,
-      id: Math.random(0),
+      id: Math.random(),
       amount: updatedAmount,
     });
   };

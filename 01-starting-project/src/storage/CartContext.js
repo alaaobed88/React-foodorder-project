@@ -6,7 +6,7 @@ const CartContext = React.createContext({
   cartItemsAdder: (data) => {},
   cartButtonsHandler: (action) => {},
   cartItems: [{ name: "", description: "", price: "", id: "", amount: "" }],
-  totalPrice: () => {},
+  totalPrice: "",
 });
 
 const CartProvider = (props) => {
@@ -52,12 +52,12 @@ const CartProvider = (props) => {
     const existingCartItemIndex = cartItems.findIndex(
       (item) => item.name === data.name
     );
-
+    const updatedCartItems = [...cartItems];
     if (existingCartItemIndex !== -1) {
       // Item already exists in the cart, update the amount from the main list
-      cartItems[existingCartItemIndex].amount = data.amount;
+      updatedCartItems[existingCartItemIndex].amount = data.amount;
 
-      setCartItems(cartItems);
+      setCartItems(updatedCartItems);
     } else {
       // Item doesn't exist in the cart, add it from the main list
       setCartItems((previousCartItems) => [...previousCartItems, data]);
