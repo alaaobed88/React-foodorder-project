@@ -4,7 +4,7 @@ const CartContext = React.createContext({
   cartExpanded: false,
   cartHandler: () => {},
   cartItemsAdder: (data) => {},
-  cartItems: [{ name: "", description: "", price: "" }],
+  cartItems: [{ name: "", description: "", price: "" ,id:Math.random(1)}],
 });
 
 const CartProvider = (props) => {

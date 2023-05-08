@@ -15,9 +15,7 @@ const CartModal = () => {
           <BackDrop />
           <div className={styles["cart-modal-flex"]}>
             <div className={styles["cart-modal"]}>
-              <CartModalItem></CartModalItem>
-              <CartModalItem></CartModalItem>
-              <CartModalItem></CartModalItem>
+              {ctx.cartItems.map((item)=>{return <CartModalItem name={item.name} description={item.description} price={item.price} id={item.id}/>})}
               <div className={styles.amount}>
                 <p>Total Amount</p>
                 <p>$666</p>
