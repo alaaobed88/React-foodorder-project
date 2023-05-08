@@ -6,12 +6,15 @@ import { CartContext } from "../../storage/CartContext";
 const MealItem = (props) => {
   const [amount, setAmount] = useState(0);
   const ctx = useContext(CartContext);
-  const addHandler = (event) => {
-    setAmount((previousAmount) => ++previousAmount);
+  const addHandler = () => {
+    setAmount((prevAmount) => prevAmount + 1);
+    const updatedAmount=amount+1;
     ctx.cartItemsAdder({
       name: props.name,
       description: props.description,
       price: props.price,
+      id: Math.random(0),
+      amount: updatedAmount,
     });
   };
 

@@ -1,7 +1,6 @@
 .cart-modal-item {
   border-bottom: 5px solid #b8471a;
   padding: 1rem;
-  
 }
 
 .cart-btn {
@@ -13,7 +12,7 @@
   margin-top: -0.6rem;
   transition: 0.5s ease-in-out;
 }
-.cart-btn:hover{
+.cart-btn:hover {
   color: white;
   background-color: #b8471a;
   transform: scale(1.1);
@@ -36,4 +35,7 @@
   font-weight: bold;
   padding: 0.1rem 0.5rem;
   font-size: 0.8rem;
+}
+li {
+  list-style: none;
 }
