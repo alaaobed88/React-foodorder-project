@@ -8,10 +8,7 @@ const CartModalItem = (props) => {
     ctx.cartButtonsHandler(props.name, "add");
   };
   const dropHandler = () => {
-    ctx.cartButtonsHandler(
-      props.name,
-      "drop"
-    );
+    ctx.cartButtonsHandler(props.name, "drop");
   };
 
   return (

@@ -1,5 +1,5 @@
 import styles from "./Header.module.css";
-
+import CartIcon from "../UI/CartIcon";
 import mealsimage from "../Assets/meals.jpg";
 import { useContext } from "react";
 import { CartContext } from "../../storage/CartContext";
@@ -10,10 +10,10 @@ const Header = () => {
     <>
       <div className={styles.header}>
         <h1>ReactMeals</h1>
-        <div onClick={ctx.cartHandler} className={styles["your-cart"]}>
-          <p>img</p>
+        <div onClick={ctx.cartExpandHandler} className={styles["your-cart"]}>
+          <CartIcon className={styles.carticon} />
           <p>Your Cart</p>
-          <p>amount</p>
+          <p>${ctx.totalPrice.toFixed(2)}</p>
         </div>
       </div>
       <div className={styles["main-image"]}>
