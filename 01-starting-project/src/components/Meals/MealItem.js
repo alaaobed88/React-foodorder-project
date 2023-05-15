@@ -1,25 +1,24 @@
 import styles from "./MealItem.module.css";
 import React from "react";
-import { useState } from "react";
+
 import Button from "../UI/Button";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { CartContext } from "../../storage/CartContext";
 const MealItem = (props) => {
-  const [amount, setAmount] = useState(0);
-  
+  const amountRef = useRef();
   const ctx = useContext(CartContext);
   const addHandler = () => {
-    setAmount((prevAmount) => prevAmount + 1);
-    const updatedAmount = amount + 1;
-    
+    const value = parseInt(amountRef.current.value, 10);
 
     ctx.cartItemsAdder({
       name: props.name,
       description: props.description,
       price: props.price,
       id: Math.random(),
-      amount: updatedAmount,
+      amount: value,
     });
+
+    amountRef.current.value = "";
   };
 
   return (
@@ -32,7 +31,8 @@ const MealItem = (props) => {
         </span>
       </div>
       <div className={styles["add-amount"]}>
-        <p>Amount {amount}</p>
+        <p>Amount</p>
+        <input type="number" step="1" min="0" max="30" ref={amountRef}></input>
         <Button type="button" onClick={addHandler}>
           + Add
         </Button>

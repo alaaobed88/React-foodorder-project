@@ -19,10 +19,22 @@
   margin-top: 0.25rem;
   background: #b8471a;
   transition: 0.5s ease-in-out;
+  display: block;
+  margin-left: 15px;
 }
 
-.add-amount button:hover{
+.add-amount button:hover {
   transform: scale(1.1);
   color: #b8471a;
   background-color: white;
+}
+
+input {
+  height: 20px;
+  width: 40px;
+  display: inline;
+}
+.add-amount p {
+  display: inline;
+  margin-right: 10px;
 }

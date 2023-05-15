@@ -55,7 +55,7 @@ const CartProvider = (props) => {
     const updatedCartItems = [...cartItems];
     if (existingCartItemIndex !== -1) {
       // Item already exists in the cart, update the amount from the main list
-      updatedCartItems[existingCartItemIndex].amount = data.amount;
+      updatedCartItems[existingCartItemIndex].amount += data.amount;
 
       setCartItems(updatedCartItems);
     } else {
