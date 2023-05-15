@@ -1,14 +1,17 @@
 import styles from "./MealItem.module.css";
+import React from "react";
 import { useState } from "react";
 import Button from "../UI/Button";
 import { useContext } from "react";
 import { CartContext } from "../../storage/CartContext";
 const MealItem = (props) => {
   const [amount, setAmount] = useState(0);
+  
   const ctx = useContext(CartContext);
   const addHandler = () => {
     setAmount((prevAmount) => prevAmount + 1);
     const updatedAmount = amount + 1;
+    
 
     ctx.cartItemsAdder({
       name: props.name,
