@@ -1,91 +1,100 @@
-import { useState, useContext } from "react";
-import styles from "./ConfirmationForm.module.css";
-import Button from "../UI/Button";
+import { useRef, useState } from "react";
+import { useContext } from "react";
+import classes from "./ConfirmationForm.module.css";
 import { CartContext } from "../../storage/CartContext";
+const isEmpty = (value) => value.trim() === "";
+const isFiveChars = (value) => value.trim().length === 5;
 
-const ConfirmationForm = () => {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [postal, setPostal] = useState("");
-  const [address, setAddress] = useState("");
+const ConfirmationForm = (props) => {
   const ctx = useContext(CartContext);
+  const [formInputsValidity, setFormInputsValidity] = useState({
+    name: true,
+    street: true,
+    city: true,
+    postalCode: true,
+  });
 
-  const checkValidity = (value) => {
-    return value.trim() === "";
-  };
-  const nameChangeHandler = (event) => {
-    setName(event.target.value);
-  };
-  const phoneChangeHandler = (event) => {
-    setPhone(event.target.value);
-  };
-  const postalChangeHandler = (event) => {
-    setPostal(event.target.value);
-  };
-  const addressChangeHandler = (event) => {
-    setAddress(event.target.value);
-  };
-  const formIsValid =
-    checkValidity(name) ||
-    checkValidity(phone) ||
-    checkValidity(postal) ||
-    checkValidity(address)
-      ? false
-      : true;
+  const nameInputRef = useRef();
+  const streetInputRef = useRef();
+  const postalCodeInputRef = useRef();
+  const cityInputRef = useRef();
 
-  const formSubmitHandler = (event) => {
+  const confirmHandler = (event) => {
     event.preventDefault();
 
+    const enteredName = nameInputRef.current.value;
+    const enteredStreet = streetInputRef.current.value;
+    const enteredPostalCode = postalCodeInputRef.current.value;
+    const enteredCity = cityInputRef.current.value;
+
+    const enteredNameIsValid = !isEmpty(enteredName);
+    const enteredStreetIsValid = !isEmpty(enteredStreet);
+    const enteredCityIsValid = !isEmpty(enteredCity);
+    const enteredPostalCodeIsValid = isFiveChars(enteredPostalCode);
+
+    setFormInputsValidity({
+      name: enteredNameIsValid,
+      street: enteredStreetIsValid,
+      city: enteredCityIsValid,
+      postalCode: enteredPostalCodeIsValid,
+    });
+
+    const formIsValid =
+      enteredNameIsValid &&
+      enteredStreetIsValid &&
+      enteredCityIsValid &&
+      enteredPostalCodeIsValid;
+
     if (!formIsValid) {
-      setName("");
-      setPhone("");
-      setAddress("");
-      setPostal("");
       return;
     }
+
+    // Submit cart data
   };
+
+  const nameControlClasses = `${classes.control} ${
+    formInputsValidity.name ? "" : classes.invalid
+  }`;
+  const streetControlClasses = `${classes.control} ${
+    formInputsValidity.street ? "" : classes.invalid
+  }`;
+  const postalCodeControlClasses = `${classes.control} ${
+    formInputsValidity.postalCode ? "" : classes.invalid
+  }`;
+  const cityControlClasses = `${classes.control} ${
+    formInputsValidity.city ? "" : classes.invalid
+  }`;
+
   return (
-    <form onSubmit={formSubmitHandler}>
-      <div className={styles["form-control"]}>
-        <label htmlFor="name">Name</label>
-        <input
-          value={name}
-          onChange={nameChangeHandler}
-          type="text"
-          id="name"
-        ></input>
+    <form className={classes.form} onSubmit={confirmHandler}>
+      <div className={nameControlClasses}>
+        <label htmlFor="name">Your Name</label>
+        <input type="text" id="name" ref={nameInputRef} />
+        {!formInputsValidity.name && <p>Please enter a valid name!</p>}
       </div>
-      <div className={styles["form-control"]}>
-        <label htmlFor="phone number">Phone Number</label>
-        <input
-          value={phone}
-          onChange={phoneChangeHandler}
-          type="text"
-          id="phone number"
-        ></input>
+      <div className={streetControlClasses}>
+        <label htmlFor="street">Street</label>
+        <input type="text" id="street" ref={streetInputRef} />
+        {!formInputsValidity.street && <p>Please enter a valid street!</p>}
       </div>
-      <div className={styles["form-control"]}>
+      <div className={postalCodeControlClasses}>
         <label htmlFor="postal">Postal Code</label>
-        <input
-          value={postal}
-          onChange={postalChangeHandler}
-          type="text"
-          id="postal"
-        ></input>
+        <input type="text" id="postal" ref={postalCodeInputRef} />
+        {!formInputsValidity.postalCode && (
+          <p>Please enter a valid postal code (5 characters long)!</p>
+        )}
       </div>
-      <div className={styles["form-control"]}>
-        <label htmlFor="location">Address</label>
-        <input
-          value={address}
-          onChange={addressChangeHandler}
-          type="text"
-          id="location"
-        ></input>
+      <div className={cityControlClasses}>
+        <label htmlFor="city">City</label>
+        <input type="text" id="city" ref={cityInputRef} />
+        {!formInputsValidity.city && <p>Please enter a valid city!</p>}
       </div>
-      <Button onClick={ctx.cartExpandHandler}>Cancel</Button>
-      <Button type="submit" disabled={!formIsValid} onClick={formSubmitHandler}>
-        Confirm
-      </Button>
+      <div className={classes.actions}>
+        <button type="button" onClick={ctx.cartExpandHandler}>
+          Cancel
+        </button>
+        <button className={classes.submit}>Confirm</button>
+      </div>
     </form>
   );
 };

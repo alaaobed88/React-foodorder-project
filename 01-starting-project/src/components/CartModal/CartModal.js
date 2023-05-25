@@ -4,10 +4,14 @@ import ReactDOM from "react-dom";
 import CartModalItem from "./CartModalItem";
 import Button from "../UI/Button";
 import ConfirmationForm from "./ConfirmationForm";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { CartContext } from "../../storage/CartContext";
 const CartModal = () => {
   const ctx = useContext(CartContext);
+  const [checkout, setIsCheckOut] = useState(false);
+  const checkoutHandler = () => {
+    setIsCheckOut((previousState) => !previousState);
+  };
   if (!ctx.cartExpanded) return;
   return (
     <>
@@ -40,14 +44,11 @@ const CartModal = () => {
                 >
                   Cancel
                 </Button>
-                <Button
-                  
-                  className={styles["checkout-btn"]}
-                >
-                  CheckOut
-                </Button>
+                <Button className={styles["checkout-btn"]}>CheckOut</Button>
               </div>
-              <div><ConfirmationForm/></div>
+              <div>
+                <ConfirmationForm />
+              </div>
             </div>
           </div>
         </>,
