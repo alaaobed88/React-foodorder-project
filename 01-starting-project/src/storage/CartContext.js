@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 const CartContext = React.createContext({
   cartExpanded: false,
-  cartHandler: () => {},
+  cartExpandHandler: () => {},
   cartItemsAdder: (data) => {},
   cartButtonsHandler: (action) => {},
   cartItems: [{ name: "", description: "", price: "", id: "", amount: "" }],
