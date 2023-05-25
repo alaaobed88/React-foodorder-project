@@ -10,10 +10,9 @@
 .cart-modal {
   display: flex;
   flex-direction: column;
-  height: 40vh;
+  height: 60vh;
   padding-inline: 1rem;
   padding-bottom: 1rem;
-  
   max-height: 60vh;
   background-color: white;
   border: 5px solid white;
@@ -66,22 +65,22 @@
   background-color: white;
   color: #b8471a;
   padding: 1rem;
-  margin-right:1rem ;
+  margin-right: 1rem;
   transition: 0.5s ease-in-out;
 }
 
-.checkout{
+.checkout {
   margin-top: 1rem;
   display: flex;
   justify-content: flex-end;
 }
 
-.checkout-btn:hover{
+.checkout-btn:hover {
   background-color: white;
   color: #b8471a;
-  transform:scale(1.1);
+  transform: scale(1.1);
 }
-.cancel-btn:hover{
+.cancel-btn:hover {
   background-color: #b8471a;
   color: white;
   transform: scale(1.1);

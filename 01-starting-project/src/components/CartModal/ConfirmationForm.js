@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { useContext } from "react";
+
 import classes from "./ConfirmationForm.module.css";
 import { CartContext } from "../../storage/CartContext";
 const isEmpty = (value) => value.trim() === "";
@@ -7,6 +8,7 @@ const isFiveChars = (value) => value.trim().length === 5;
 
 const ConfirmationForm = (props) => {
   const ctx = useContext(CartContext);
+
   const [formInputsValidity, setFormInputsValidity] = useState({
     name: true,
     street: true,
@@ -19,7 +21,10 @@ const ConfirmationForm = (props) => {
   const postalCodeInputRef = useRef();
   const cityInputRef = useRef();
 
-  const confirmHandler = (event) => {
+  
+  
+
+  const confirmHandler = async (event) => {
     event.preventDefault();
 
     const enteredName = nameInputRef.current.value;
@@ -49,7 +54,42 @@ const ConfirmationForm = (props) => {
       return;
     }
 
-    // Submit cart data
+    try {
+      const response = await fetch(
+        "https://react-meals-45a70-default-rtdb.firebaseio.com/orders.json",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            informations: {
+              name: nameInputRef.current.value,
+              street: streetInputRef.current.value,
+              city: cityInputRef.current.value,
+              postal: postalCodeInputRef.current.value,
+            },
+            meals: ctx.cartItems,
+            totalPrice: ctx.totalPrice,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to send the Order request.");
+      }
+
+      // Clear the form input values
+      nameInputRef.current.value = "";
+      streetInputRef.current.value = "";
+      postalCodeInputRef.current.value = "";
+      cityInputRef.current.value = "";
+      ctx.completionMessageHandler(); 
+      ctx.mealsClear();
+      props.onCompleteMessage("Your order has been completed successfully");
+    } catch (error) {
+      ctx.completionMessageHandler(error.message);
+    }
   };
 
   const nameControlClasses = `${classes.control} ${
@@ -95,6 +135,10 @@ const ConfirmationForm = (props) => {
         </button>
         <button className={classes.submit}>Confirm</button>
       </div>
+      {ctx.errorMessage && (
+        <p className={classes.errorMessage}>Failed to send the Order request</p>
+      )}
+      
     </form>
   );
 };

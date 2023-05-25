@@ -5,6 +5,11 @@ const CartContext = React.createContext({
   cartExpandHandler: () => {},
   cartItemsAdder: (data) => {},
   cartButtonsHandler: (action) => {},
+  mealsClear: () => {},
+  checkoutHandler: () => {},
+  isCheckout: false,
+  completionMessageHandler: () => {},
+  completionMessage: null,
   cartItems: [{ name: "", description: "", price: "", id: "", amount: "" }],
   totalPrice: "",
 });
@@ -12,8 +17,20 @@ const CartContext = React.createContext({
 const CartProvider = (props) => {
   const [cartExpanded, setCartExpanded] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const [completionMessage, setCompletionMessage] = useState(null);
+  const [isCheckout, setIsCheckOut] = useState(false);
+  const checkoutHandler = () => {
+    setIsCheckOut((previousState) => !previousState);
+  };
+  const completionMessageHandler = (value) => {
+    setCompletionMessage(value);
+  };
   const cartExpandHandler = () => {
     setCartExpanded((previousState) => !previousState);
+    if (cartExpanded) {
+      setCompletionMessage();
+      setIsCheckOut(false);
+    }
   };
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -27,7 +44,9 @@ const CartProvider = (props) => {
 
     setTotalPrice(calculatedTotalPrice);
   }, [cartItems]);
-
+  const mealsClear = () => {
+    setCartItems([]);
+  };
   const cartButtonsHandler = (name, action) => {
     const updatedCartItems = [...cartItems];
     const existingCartItem = updatedCartItems.find(
@@ -72,6 +91,11 @@ const CartProvider = (props) => {
         cartItemsAdder: cartItemsAdder,
         cartButtonsHandler: cartButtonsHandler,
         totalPrice: totalPrice,
+        mealsClear: mealsClear,
+        checkoutHandler,
+        completionMessageHandler,
+        completionMessage,
+        isCheckout,
       }}
     >
       {props.children}
