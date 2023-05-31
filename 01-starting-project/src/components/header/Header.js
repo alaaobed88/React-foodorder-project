@@ -13,7 +13,7 @@ const Header = () => {
         <div onClick={ctx.cartExpandHandler} className={styles["your-cart"]}>
           <CartIcon className={styles.carticon} />
           <p>Your Cart</p>
-          <p>${ctx.totalPrice.toFixed(2)}</p>
+          <h4>${ctx.totalPrice.toFixed(2)}</h4>
         </div>
       </div>
       <div className={styles["main-image"]}>

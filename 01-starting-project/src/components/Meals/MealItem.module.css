@@ -38,3 +38,16 @@ input {
   display: inline;
   margin-right: 10px;
 }
+
+@media screen and (max-width: 460px) {
+  .add-amount button {
+    margin-left: 10%;
+  }
+  .add-amount p {
+    margin-left: 15%;
+    
+  }
+  input {
+    margin-left: 25%;
+  }
+}

@@ -27,7 +27,7 @@
   font-weight: bold;
   transition: 0.5s ease-in-out;
 }
-.your-cart:hover{
+.your-cart:hover {
   transform: scale(1.05);
 }
 .main-image {
@@ -47,8 +47,27 @@
 .your-cart p {
   padding-left: 1rem;
 }
+.your-cart h4 {
+  padding-left: 1rem;
+}
 
 .carticon {
   width: 1.35rem;
   height: 1.35rem;
+}
+
+@media screen and (max-width: 550px) {
+  .header h1 {
+    margin-left: 5%;
+    font-size: 25px;
+  }
+  .your-cart {
+    margin-inline: 5%;
+    min-width: 10rem;
+    border-radius: 5px;
+  }
+
+  .your-cart p {
+    display: none;
+  }
 }

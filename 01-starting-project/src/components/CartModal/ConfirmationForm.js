@@ -21,9 +21,6 @@ const ConfirmationForm = (props) => {
   const postalCodeInputRef = useRef();
   const cityInputRef = useRef();
 
-  
-  
-
   const confirmHandler = async (event) => {
     event.preventDefault();
 
@@ -84,11 +81,11 @@ const ConfirmationForm = (props) => {
       streetInputRef.current.value = "";
       postalCodeInputRef.current.value = "";
       cityInputRef.current.value = "";
-      ctx.completionMessageHandler(); 
+      ctx.completionMessageHandler();
       ctx.mealsClear();
-      props.onCompleteMessage("Your order has been completed successfully");
+      ctx.completionMessageHandler(true);
     } catch (error) {
-      ctx.completionMessageHandler(error.message);
+      ctx.completionMessageHandler(false);
     }
   };
 
@@ -135,10 +132,9 @@ const ConfirmationForm = (props) => {
         </button>
         <button className={classes.submit}>Confirm</button>
       </div>
-      {ctx.errorMessage && (
+      {ctx.completionMessage===false && (
         <p className={classes.errorMessage}>Failed to send the Order request</p>
       )}
-      
     </form>
   );
 };
